@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+You must open your debugger to see the console output demonstrating the results of this file being loaded.
+<script type="module">
+    window.store = new Proxy({},
+        {
+            set(target,property,value) {
+                console.log(target,property,"=",value," old value ",target[property]);
+                target[property] = value;
+                return true;
+            }
+        });
+</script>
+<script>
+    try {
+        store.name = "joan";
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+<script src="../deferscript.js" defer>
+    store.name = "juliana"
+</script>
+</body>
+</html>
