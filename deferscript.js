@@ -25,5 +25,9 @@ SOFTWARE.
     // cloning the currentScript does not seem to work, so we have to be brutal with HTML assignment
     const script = document.createElement("script");
     script.innerHTML =  document.currentScript.innerHTML;
-    document.currentScript.replaceWith(script);
+    document.currentScript.innerHTML = "";
+    document.currentScript.remove();
+    window.addEventListener("DOMContentLoaded",() => {
+        document.body.appendChild(script);
+    })
 })();
